@@ -40,8 +40,8 @@ jobs:
       - name: Authenticate in the AWS
         uses: aws-actions/configure-aws-credentials@v4
         with: 
-            role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/${{ secrets.AWS_ROLE }}
-            aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/${{ secrets.AWS_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Setup Terraform with specifc version on the runner
         uses: hashicorp/setup-terraform@v3
