@@ -68,7 +68,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color -input=false -out planfile -var-file=terraform.tfvars -out=tfplan
+        run: terraform plan -no-color -input=false -out planfile -var-file=example.tfvars -out=tfplan
         continue-on-error: true
 
       - name: Terraform plan status
