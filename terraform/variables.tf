@@ -46,4 +46,3 @@ variable "vpc_cdir_block" {
   description = "CIDR block for VPC"
 }
 
-#
