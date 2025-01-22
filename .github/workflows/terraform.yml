@@ -36,7 +36,7 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Autenticar na AWS
+      - name: Authenticate in the AWS
         uses: aws-actions/configure-aws-credentials@v4
         with: 
             role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT }}:role/${{ secrets.AWS_ROLE }}
@@ -69,9 +69,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         
-        run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/} 
-          terraform plan -no-color -input=false -out planfile -var-file='stage.tfvars' -out=tfplan
+        run: terraform plan -no-color -input=false -out planfile -var-file='stage.tfvars' -out=tfplan
         continue-on-error: true
 
       - name: Terraform plan status
