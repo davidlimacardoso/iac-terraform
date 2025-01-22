@@ -15,7 +15,7 @@ name: Provisionning IaC
 env:
   # TF_VAR_env: ${{ github.event.inputs.env }}
   BUKET_TF_STATE: ${{ secrets.BUKET_TF_STATE }}
-  EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
+  EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}-${{ github.head_ref || github.ref_name }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
 
