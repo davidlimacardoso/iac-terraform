@@ -63,8 +63,8 @@ module "eks" {
 
   # Cluster access entry
   # To add the current caller identity as an administrator
-  enable_cluster_creator_admin_permissions = true
-
+  # enable_cluster_creator_admin_permissions = true
+  authentication_mode = "API"
 }
 
 # https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-available-in-amazon-eks-add-ons/ 
