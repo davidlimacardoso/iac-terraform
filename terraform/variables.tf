@@ -45,4 +45,9 @@ variable "vpc_cdir_block" {
   type        = string
   description = "CIDR block for VPC"
 }
-#
+
+variable "domain_name" {
+  default     = "*.jupter.xyz"
+  type        = string
+  description = "The domain name for which the certificate should be issued."
+}
