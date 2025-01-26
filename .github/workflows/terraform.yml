@@ -6,14 +6,15 @@ name: Provisionning IaC
       - stage
     paths:
       - terraform/**
+      - k8s/nginx.yml
   pull_request:
     branches:
       - main
     paths:
       - terraform/**
+      - k8s/nginx.yml
 
 env:
-  # TF_VAR_env: ${{ github.event.inputs.env }}
   BUKET_TF_STATE: ${{ secrets.BUKET_TF_STATE }}
   EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}-${{ github.ref == 'refs/heads/main' && 'prd' || github.ref == 'refs/heads/stage' && 'stg' || github.ref == 'refs/heads/developer' && 'dev'}}
   AWS_REGION: ${{ secrets.AWS_REGION }}

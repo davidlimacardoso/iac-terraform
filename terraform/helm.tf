@@ -13,6 +13,4 @@ resource "helm_release" "ingress-nginx" {
     value = aws_acm_certificate.cert.arn
     type  = "string"
   }
-
-
 }
