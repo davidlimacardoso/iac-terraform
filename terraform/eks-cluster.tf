@@ -2,7 +2,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.31.6"
 
-  cluster_name    = var.cluster_name
+  cluster_name    = "${var.cluster_name}-${var.env}"
   cluster_version = "1.31"
 
   vpc_id                         = var.create_vpc == true ? module.vpc[0].vpc_id : var.vpc_id
@@ -21,7 +21,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     one = {
-      name = "ng-1-${var.cluster_name}"
+      name = "ng-1-${var.cluster_name}-${var.env}"
 
       instance_types = ["t3.small"]
 
@@ -41,7 +41,7 @@ module "eks" {
     }
 
     two = {
-      name = "ng-2-${var.cluster_name}"
+      name = "ng-2-${var.cluster_name}-${var.env}"
 
       instance_types = ["t3.small"]
 

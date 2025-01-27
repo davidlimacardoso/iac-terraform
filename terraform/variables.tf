@@ -51,3 +51,9 @@ variable "domain_name" {
   type        = string
   description = "The domain name for which the certificate should be issued."
 }
+
+variable "env" {
+  type        = string
+  description = "Environment name"
+  default     = "stg"
+}

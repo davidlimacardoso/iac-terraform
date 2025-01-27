@@ -16,9 +16,10 @@ name: Provisionning IaC
 
 env:
   BUKET_TF_STATE: ${{ secrets.BUKET_TF_STATE }}
-  EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}-${{ github.ref == 'refs/heads/main' && 'prd' || github.ref == 'refs/heads/stage' && 'stg' || github.ref == 'refs/heads/developer' && 'dev'}}
+  ENV: ${{ github.ref == 'refs/heads/main' && 'prd' || github.ref == 'refs/heads/stage' && 'stg' || github.ref == 'refs/heads/developer' && 'dev'}} 
+  EKS_CLUSTER: ${{ secrets.EKS_CLUSTER }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  BRANCH_NAME: ${{ github.head_ref || github.ref_name }} 
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 permissions:
   id-token: write
@@ -72,12 +73,12 @@ jobs:
       - name: Terraform Apply
         id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -var-file=$BRANCH_NAME.tfvars -auto-approve -input=false -parallelism=1 planfile
+        run: terraform apply -var-file=${{ env.ENV }}.tfvars -auto-approve -input=false -parallelism=1 planfile
 
       - name: Get Kube config file
         id: getconfig
         if: steps.apply.outcome == 'success'
-        run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}
+        run: aws eks update-kubeconfig --region ${{ env.AWS_REGION }} --name ${{ env.EKS_CLUSTER }}-${{ env.ENV }}
       
       - name: Validate Kube config file
         if: steps.getconfig.outcome == 'success'
