@@ -2,6 +2,10 @@
 
 ## Maintain vpc & eks with terraform for vprofile project
 
+## The Application 
+
+This repository is a IaC of this application [vprofile-action](https://github.com/davidlimacardoso/vprofile-action).
+
 ## Tools required
 Terraform version 1.6.3
 
