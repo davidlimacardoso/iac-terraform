@@ -47,7 +47,7 @@ variable "vpc_cdir_block" {
 }
 
 variable "domain_name" {
-  default     = "*.jupter.xyz"
+  default     = "jupter.xyz"
   type        = string
   description = "The domain name for which the certificate should be issued."
 }
