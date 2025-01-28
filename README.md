@@ -18,6 +18,12 @@ Terraform version 1.6.3
 ####
 #####
 
+# Infraestructure
+This is a Infraestructure provisioned, below:
+
+![](drawio/iac-terraform.png)
+
+
 
 # References
 [Set ACM Certificate to Ingress-Nginx ](https://kubernetes.github.io/ingress-nginx/deploy/)
